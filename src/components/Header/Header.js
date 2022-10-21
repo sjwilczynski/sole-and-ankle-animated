@@ -1,13 +1,13 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from "react";
+import styled from "styled-components/macro";
 
-import { QUERIES, WEIGHTS } from '../../constants';
-import Logo from '../Logo';
-import Icon from '../Icon';
-import UnstyledButton from '../UnstyledButton';
-import SuperHeader from '../SuperHeader';
-import MobileMenu from '../MobileMenu';
-import VisuallyHidden from '../VisuallyHidden';
+import { QUERIES, WEIGHTS } from "../../constants";
+import Logo from "../Logo";
+import Icon from "../Icon";
+import UnstyledButton from "../UnstyledButton";
+import SuperHeader from "../SuperHeader";
+import MobileMenu from "../MobileMenu";
+import VisuallyHidden from "../VisuallyHidden";
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
@@ -20,12 +20,12 @@ const Header = () => {
           <Logo />
         </LogoWrapper>
         <DesktopNav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
+          <AnimatedNavLink href="/sale">Sale</AnimatedNavLink>
+          <AnimatedNavLink href="/new">New&nbsp;Releases</AnimatedNavLink>
+          <AnimatedNavLink href="/men">Men</AnimatedNavLink>
+          <AnimatedNavLink href="/women">Women</AnimatedNavLink>
+          <AnimatedNavLink href="/kids">Kids</AnimatedNavLink>
+          <AnimatedNavLink href="/collections">Collections</AnimatedNavLink>
         </DesktopNav>
         <MobileActions>
           <ShoppingBagButton>
@@ -120,9 +120,44 @@ const NavLink = styled.a`
   text-decoration: none;
   color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  --duration: 150ms;
 
   &:first-of-type {
     color: var(--color-secondary);
+  }
+`;
+
+const AnimatedNavLink = ({ children }) => (
+  <NavLink>
+    <LineOne>{children}</LineOne>
+    <LineTwo>{children}</LineTwo>
+  </NavLink>
+);
+
+const LineOne = styled.span`
+  transition: transform var(--duration);
+  transform: translateY(0);
+  font-weight: ${WEIGHTS.medium};
+
+  ${NavLink}:hover &, ${NavLink}:focus & {
+    transform: translateY(-100%);
+    transition: transform var(--duration);
+  }
+`;
+const LineTwo = styled.span`
+  transition: transform var(--duration);
+  transform: translateY(100%);
+  position: absolute;
+  font-weight: ${WEIGHTS.bold};
+  opacity: 0;
+
+  ${NavLink}:hover &, ${NavLink}:focus & {
+    transform: translateY(0);
+    transition: transform var(--duration);
+    opacity: 1;
   }
 `;
 
