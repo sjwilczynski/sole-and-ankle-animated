@@ -123,7 +123,7 @@ const NavLink = styled.a`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  --duration: 150ms;
+  position: relative;
 
   &:first-of-type {
     color: var(--color-secondary);
@@ -137,28 +137,31 @@ const AnimatedNavLink = ({ children, ...delegated }) => (
   </NavLink>
 );
 
-const NormalLine = styled.span`
-  transition: transform var(--duration);
-  transform: translateY(0);
+const Text = styled.span`
+  transition: transform 300ms;
+  transform: translateY(var(--transform-out));
   font-weight: ${WEIGHTS.medium};
 
   ${NavLink}:hover &, ${NavLink}:focus & {
-    transform: translateY(-100%);
-    transition: transform var(--duration);
+    transform: translateY(var(--transform-in));
+    transition: transform 150ms;
   }
 `;
-const BoldLine = styled.span`
-  transition: transform var(--duration);
-  transform: translateY(100%);
-  position: absolute;
-  font-weight: ${WEIGHTS.bold};
-  opacity: 0;
 
-  ${NavLink}:hover &, ${NavLink}:focus & {
-    transform: translateY(0);
-    transition: transform var(--duration);
-    opacity: 1;
-  }
+const NormalLine = styled(Text)`
+  --transform-out: 0;
+  --transform-in: -100%;
+`;
+const BoldLine = styled(Text)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-weight: ${WEIGHTS.bold};
+
+  --transform-out: 100%;
+  --transform-in: 0;
 `;
 
 export default Header;
