@@ -142,9 +142,11 @@ const Text = styled.span`
   transform: translateY(var(--transform-out));
   font-weight: ${WEIGHTS.medium};
 
-  ${NavLink}:hover &, ${NavLink}:focus & {
-    transform: translateY(var(--transform-in));
-    transition: transform 150ms;
+  @media (prefers-reduced-motion: no-preference) {
+    ${NavLink}:hover &, ${NavLink}:focus & {
+      transform: translateY(var(--transform-in));
+      transition: transform 150ms;
+    }
   }
 `;
 
