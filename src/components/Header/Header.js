@@ -133,7 +133,7 @@ const NavLink = styled.a`
 const AnimatedNavLink = ({ children, ...delegated }) => (
   <NavLink {...delegated}>
     <NormalLine>{children}</NormalLine>
-    <BoldLine>{children}</BoldLine>
+    <BoldLine aria-hidden={true}>{children}</BoldLine>
   </NavLink>
 );
 
