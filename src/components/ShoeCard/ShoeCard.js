@@ -82,10 +82,13 @@ const Image = styled.img`
   display: block;
   transition: transform 500ms;
   transform-origin: bottom;
+  will-change: transform;
 
-  ${Link}:hover &, ${Link}:focus & {
-    transform: scale(1.1);
-    transition: transform 250ms;
+  @media (prefers-reduced-motion: no-preference) {
+    ${Link}:hover &, ${Link}:focus & {
+      transform: scale(1.1);
+      transition: transform 250ms;
+    }
   }
 `;
 
