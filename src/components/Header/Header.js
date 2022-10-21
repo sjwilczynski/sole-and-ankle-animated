@@ -130,14 +130,14 @@ const NavLink = styled.a`
   }
 `;
 
-const AnimatedNavLink = ({ children }) => (
-  <NavLink>
-    <LineOne>{children}</LineOne>
-    <LineTwo>{children}</LineTwo>
+const AnimatedNavLink = ({ children, ...delegated }) => (
+  <NavLink {...delegated}>
+    <NormalLine>{children}</NormalLine>
+    <BoldLine>{children}</BoldLine>
   </NavLink>
 );
 
-const LineOne = styled.span`
+const NormalLine = styled.span`
   transition: transform var(--duration);
   transform: translateY(0);
   font-weight: ${WEIGHTS.medium};
@@ -147,7 +147,7 @@ const LineOne = styled.span`
     transition: transform var(--duration);
   }
 `;
-const LineTwo = styled.span`
+const BoldLine = styled.span`
   transition: transform var(--duration);
   transform: translateY(100%);
   position: absolute;
