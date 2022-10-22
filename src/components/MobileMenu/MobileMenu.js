@@ -65,7 +65,7 @@ const Backdrop = styled.div`
   bottom: 0;
 
   background: var(--color-backdrop);
-  animation: ${fadeIn} 300ms;
+  animation: ${fadeIn} 300ms ease-in-out;
 `;
 
 const Overlay = styled(DialogOverlay)`
@@ -82,7 +82,7 @@ const Drawer = styled.div`
   position: relative;
   width: 300px;
   background: white;
-  animation: ${slideIn} 300ms;
+  animation: ${slideIn} 300ms ease-out;
 `;
 
 const Content = styled(DialogContent)`
