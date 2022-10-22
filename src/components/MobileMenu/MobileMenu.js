@@ -82,7 +82,12 @@ const Drawer = styled.div`
   position: relative;
   width: 300px;
   background: white;
-  animation: ${slideIn} 300ms ease-out;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: ${slideIn} 300ms cubic-bezier(0,.63,.57,1);
+    animation-delay: 200ms;
+    animation-fill-mode: backwards;
+  }
 `;
 
 const Content = styled(DialogContent)`
@@ -92,7 +97,7 @@ const Content = styled(DialogContent)`
   flex-direction: column;
 
   animation: ${fadeIn} 750ms;
-  animation-delay: 200ms;
+  animation-delay: 400ms;
   animation-fill-mode: backwards;
 `;
 
